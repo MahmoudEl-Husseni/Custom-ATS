@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Tracking System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        #sidebar {
+            background-color: #343a40;
+            min-height: 100vh;
+        }
+        #sidebar .nav-link {
+            color: #fff;
+        }
+        #content-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        #upload-section {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        .content-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ATS System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <span data-feather="home"></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                Submit Resume
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="briefcase"></span>
+                                View Matches
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <!-- Section 1: Introduction -->
+                <div id="content-section" class="my-4 p-4">
+                    <div class="content-header text-center">
+                        <h2>Applicant Tracking System</h2>
+                        <p>Manage your applications and match them with job requirements efficiently.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2: Resume Upload and Key-Value Input -->
+                <div id="upload-section" class="p-4">
+                    <h3 class="text-center">Submit Your Resume and Define Categories</h3>
+                    <p class="text-center">Upload your resume and specify categories and values to match against your CV.</p>
+
+                    <!-- Form for resume upload and key-value pairs -->
+                    <form method="POST" enctype="multipart/form-data" action="/upload">
+                        <!-- Resume Upload Section -->
+                        <div class="mb-3">
+                            <label for="resume" class="form-label">Upload Resume</label>
+                            <input type="file" class="form-control" id="resume" name="resume" required>
+                        </div>
+
+                        <!-- Key-Value Pair Section -->
+                        <div id="keyValuePairs">
+                            <label for="resume" class="form-label">Standard Values</label>
+                            <div class="row mb-3 key-value-pair">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="keys[]" placeholder="Category (e.g., Skills)" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="values[]" placeholder="Value (e.g., Python, 5 years)" required>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-danger remove-pair">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary" id="addPair">Add Another Category</button>
+                        </div>
+
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Section 3: ATS Overview -->
+                <div id="content-section" class="my-4 p-4">
+                    <h3 class="text-center">About Our ATS</h3>
+                    <p class="text-center">Our system helps both employers and applicants by matching resumes with job requirements based on predefined categories.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-3">
+        <p>© 2024 ATS System - All rights reserved</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS for dynamic key-value pair functionality -->
+    <script>
+        document.getElementById('addPair').addEventListener('click', function() {
+            const keyValuePairs = document.getElementById('keyValuePairs');
+            const newPair = document.createElement('div');
+            newPair.classList.add('row', 'mb-3', 'key-value-pair');
+            newPair.innerHTML = `
+                <div class="col">
+                    <input type="text" class="form-control" name="keys[]" placeholder="Category (e.g., Skills)" required>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="values[]" placeholder="Value (e.g., Python, 5 years)" required>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-danger remove-pair">Remove</button>
+                </div>
+            `;
+            keyValuePairs.appendChild(newPair);
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-pair')) {
+                event.target.closest('.key-value-pair').remove();
+            }
+        });
+    </script>
+</body>
+</html>

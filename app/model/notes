@@ -1,0 +1,14 @@
+'''
+each llm object should have the following methods:
+- get prompt template in markdown
+- get prompt template in html
+- get prompt template in text
+- get prompt template and selects each format
+
+- extract values 
+- select pdf or not 
+ATS by3ml eh ? 
+1) takes the pdf file
+2) Extract exact key, value pairs from the pdf file
+3) perform some selection based on the key, value pairs compared to standard key, value pairs
+'''

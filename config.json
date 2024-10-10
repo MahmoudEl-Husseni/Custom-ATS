@@ -1,0 +1,12 @@
+{
+    "llm" : {
+        "name" : "gemini", 
+        "args" : {
+            "model_name" : "gemini-1.5-flash",
+            "prompt_file" : "app/model/Prompt_Templates/prompt1", 
+            "compare_prompt_path" : "app/model/Prompt_Templates/compare_prompt",
+            "gemini_api_key" : "secrets/gemini_api_key"
+        }
+    },
+    "example_pdf_path" : "secrets/example.pdf"
+}

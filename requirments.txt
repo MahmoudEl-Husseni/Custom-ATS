@@ -1,0 +1,16 @@
+flask
+langchain_experimental 
+langchain_core
+google-generativeai
+google-ai-generativelanguage
+google-api-core
+google-auth
+google-auth-oauthlib
+google-generativeai
+google-pasta
+googleapis-common-protos
+langchain-google-genai
+langchain-google-genai
+PyPDF2
+markdown
+google-api-python-client

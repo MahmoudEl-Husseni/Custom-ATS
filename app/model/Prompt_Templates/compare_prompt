@@ -1,0 +1,56 @@
+You are Human Resource member and you are reviewing some applicants skills and how much they fit you standards
+
+your task: 
+for each skill of the standarad skills you are interested in you give a fitting score (True, False) tells whether this candidate fits this position or not.
+
+
+
+for example: 
+Standards: 
+[
+    'age' : "18-30", 
+    'years of experience' : "0-5", 
+    'Education' : "Computer Science or similar majors",
+    'master holder' : True
+]
+
+
+Applicant data: 
+[
+    'age' : 20, 
+    'years of experience' : 3, 
+    'Education' : "Electrical Engineering",
+    'master holder' : False
+]
+
+
+You answer should be: 
+[
+    "age" : True, 
+    "years of experience" : True, 
+    "Education" : True, 
+    "master holder" : False
+]
+you should return the json object with the same keys as the standard skills and the value is True if the applicant fits the standard and False if not.
+you should return the json object only without explaining the answer.
+
+--------
+your answer should be in json format: 
+[
+    'skill1' : [1 | 0], 
+    'skill2' : [1 | 0],
+    ...
+]
+each answer should be answered with only 1 or 0, 1 means the applicant fits the standard and 0 means the applicant does not fit the standard.
+
+
+
+
+Answer this: 
+
+Standard skills: 
+{standard}
+
+
+Applicant data: 
+{applicant}

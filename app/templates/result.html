@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Tracking System - Results</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        table {
+            margin-bottom: 30px;
+        }
+        .match-true {
+            background-color: #d4edda; /* Green background for matches */
+        }
+        .match-false {
+            background-color: #f8d7da; /* Red background for mismatches */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ATS System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <!-- Update the Home button to return to the home page (/) -->
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Submit Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">View Matches</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="text-center my-4">Matching Results</h2>
+
+        <!-- Standard Skills Section -->
+        <h4 class="text-center">Standard Skills</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Skill</th>
+                    <th scope="col">Standard</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for skill, value in standard_skills.items() %}
+                    <tr>
+                        <td>{{ skill }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Extracted Skills Section -->
+        <h4 class="text-center">Extracted Skills</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Skill</th>
+                    <th scope="col">Extracted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for skill, value in extracted_skills.items() %}
+                    <tr>
+                        <td>{{ skill }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Results Section -->
+        <h4 class="text-center">Match Results</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Skill</th>
+                    <th scope="col">Match</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for skill, match in result.items() %}
+                    <tr class="{% if match %}match-true{% else %}match-false{% endif %}">
+                        <td>{{ skill }}</td>
+                        <td>{{ match }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-3 bg-dark text-white text-center">
+        <p>© 2024 ATS System - All rights reserved</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
